@@ -1,22 +1,96 @@
 import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { Platform, AlertController, App, Events } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { Keyboard } from '@ionic-native/keyboard';
+import { DatabaseProvider } from '../providers/database/database';
+import { AuthProvider } from '../providers/auth/auth';
 
-import { HomePage } from '../pages/home/home';
 @Component({
-  templateUrl: 'app.html'
+    templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = HomePage;
+	
+    rootPage: any;
+	private profile: any;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
-    platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      statusBar.styleDefault();
-      splashScreen.hide();
-    });
-  }
+	constructor(
+		private platform: Platform, 
+		private statusBar: StatusBar, 
+		private splashScreen: SplashScreen,
+		private keyboard: Keyboard,
+		private alertCtrl: AlertController,
+		private app: App,
+		private events: Events,
+		private db: DatabaseProvider,
+		private auth: AuthProvider
+
+	) {
+
+		this.profile = {};
+
+		platform.ready().then(() => {
+
+			statusBar.styleLightContent();
+			splashScreen.hide();
+			keyboard.hideKeyboardAccessoryBar(false);
+			db.initDatabase().then(() => {
+
+			});
+
+		});
+
+		auth.isLogged().then((profile) => {
+
+			if (profile != null) {
+
+				this.profile = profile;
+				this.rootPage = 'ProductsPage';
+
+			} else {
+				this.rootPage = 'SigninPage';
+			}
+
+		});
+		events.subscribe('account:profile', (profile) => {
+			this.profile = profile;
+		});
+
+	}
+
+
+	public logout(): void {
+
+		let confirm = this.alertCtrl.create({
+		    title: 'Sair',
+		    message: 'Tem certeza que deseja sair?',
+		    buttons: [
+		        {
+		            text: 'Não',
+		            handler: () => {
+		                console.log('Disagree clicked');
+		            }
+		        },{
+		            text: 'Sim',
+		            handler: () => {
+
+		            	// this.auth.logout();
+		                this.app.getRootNav().setRoot('Signin');
+
+		            }
+		        }
+		    ]
+		});
+		confirm.present();
+
+	}
+
+	public productsPage(): void {
+		this.app.getRootNav().setRoot('Products');
+	}
+
+	public accountPage(): void {
+		this.app.getRootNav().setRoot('Account', {'profile': this.profile});
+	}
 }
 

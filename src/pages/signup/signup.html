@@ -1,0 +1,26 @@
+<ion-content class="login-page">
+	<button ion-button color="light" clear icon-left navPop>
+		<ion-icon name="arrow-back"></ion-icon>
+		Login
+	</button>
+	<div class="login-center">
+		<h1>Crie sua conta</h1>
+		<form (ngSubmit)="submitSignup()">
+			<ion-list inset>
+				<ion-item>
+					<ion-input [(ngModel)]="signup.name" type="text" name="fullname" placeholder="Nome Completo"></ion-input>
+				</ion-item>
+				<ion-item>
+					<ion-input [(ngModel)]="signup.email" type="email" name="email" placeholder="E-mail"></ion-input>
+				</ion-item>
+				<ion-item>
+					<ion-input [(ngModel)]="signup.password" type="password" name="password" placeholder="Senha"></ion-input>
+				</ion-item>
+				<ion-item>
+					<ion-input [(ngModel)]="repetpassword" type="password" name="repetpassword" placeholder="Repetir senha"></ion-input>
+				</ion-item>
+			</ion-list>
+			<button ion-button round class="btn-outline" type="submit" color="yellow" outline>Cadastrar</button>
+		</form>
+	</div>
+</ion-content>

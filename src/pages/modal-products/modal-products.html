@@ -1,0 +1,52 @@
+<ion-header>
+
+	<ion-navbar color="blue">
+		<ion-title>Adicionar Produto</ion-title>
+		<ion-buttons start>
+			<button ion-button icon-only (click)="cancel()" [disabled]="disabledButtons">
+				<ion-icon name="close"></ion-icon>
+      		</button>
+		</ion-buttons>
+		<ion-buttons end>
+			<button ion-button icon-only (click)="save()" [disabled]="disabledButtons">
+				<ion-icon name="create"></ion-icon>
+      		</button>
+		</ion-buttons>
+	</ion-navbar>
+	<div class="d-navbar">
+		<img *ngIf="product.image != null;else fixedImage" class="img-circle" (click)="loadPhoto()" src="{{ product.image }}">
+		<ng-template #fixedImage><img class="img-circle" (click)="loadPhoto()" src="assets/img/shopping-bag5.png"></ng-template>
+		<div class="photo">
+			<img src="assets/img/photo-camera.png">
+		</div>
+	</div>
+</ion-header>
+
+
+<ion-content>
+	<ion-list>
+		<ion-item>
+			<ion-label stacked color="gray"><b>Produto</b></ion-label>
+			<ion-input type="text" [(ngModel)]="product.name" (ionFocus)="disabledButtons = true" (ionBlur)="enableButtons()"></ion-input>
+		</ion-item>
+		<ion-item>
+			<ion-label stacked color="gray"><b>Preço</b></ion-label>
+			<ion-input type="number" [(ngModel)]="product.price" (ionFocus)="disabledButtons = true" (ionBlur)="enableButtons()"></ion-input>
+		</ion-item>
+		<ion-item>
+			<ion-label stacked color="gray"><b>Fornecedor</b></ion-label>
+			<ion-input type="text" [(ngModel)]="product.provider" (ionFocus)="disabledButtons = true" (ionBlur)="enableButtons()"></ion-input>
+		</ion-item>
+		<ion-item>
+			<ion-label stacked color="gray"><b>Peso</b></ion-label>
+			<ion-input type="text" [(ngModel)]="product.weight" (ionFocus)="disabledButtons = true" (ionBlur)="enableButtons()"></ion-input>
+		</ion-item>
+		<button ion-item>
+			<h2>Fotos</h2>
+			<p>Biblioteca</p>
+		</button>
+		<ion-item></ion-item>
+		<ion-item></ion-item>
+	</ion-list>
+
+</ion-content>

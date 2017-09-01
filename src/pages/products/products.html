@@ -1,0 +1,44 @@
+
+<ion-header>
+
+	<ion-navbar color="yellow">
+		<ion-title>Produtos</ion-title>
+		<ion-buttons start>
+			<button ion-button icon-only menuToggle>
+      			<ion-icon name="menu"></ion-icon>
+    		</button>
+		</ion-buttons>
+		<ion-buttons end>
+			<button ion-button icon-only *ngIf="!reorder" (click)="moreOptions($event)">
+				<ion-icon name="more"></ion-icon>
+      		</button>
+      		<button ion-button icon-only *ngIf="reorder" (click)="reorder = false">
+				<ion-icon name="close"></ion-icon>
+      		</button>
+		</ion-buttons>
+	</ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+	<ion-refresher *ngIf="!reorder" (ionRefresh)="refreshItems($event)">
+    	<ion-refresher-content pullingText="Puxe para atualizar"></ion-refresher-content>
+  	</ion-refresher>
+	<ion-list reorder="{{ reorder }}" (ionItemReorder)="reorderItems($event)">
+		<ion-item-sliding *ngFor="let item of items; let i = index">
+			<button ion-item (click)="editProduct(item.data, i)">
+				<ion-avatar item-left>
+					<img *ngIf="item.data.image != null;else fixedImage" src="{{ item.data.image }}">
+					<ng-template #fixedImage><img src="assets/img/shopping-bag5.png"></ng-template>
+	    		</ion-avatar>
+				<h2>{{ item.data.name }}</h2>
+				<p>R$ {{ item.data.price | adjustprice }}</p>
+			</button>
+			<ion-item-options side="right">
+				<button ion-button color="danger" (click)="removeProduct(i)">Remover</button>
+			</ion-item-options>
+		</ion-item-sliding>
+		<ion-item class="blank-items" *ngFor="let obj of emptyArray"></ion-item>
+	</ion-list>
+</ion-content>

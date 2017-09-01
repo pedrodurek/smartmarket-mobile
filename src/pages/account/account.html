@@ -1,0 +1,46 @@
+
+<ion-header>
+
+	<ion-navbar color="yellow">
+		<ion-title>Dados Cadastrais</ion-title>
+		<ion-buttons start>
+			<button ion-button icon-only menuToggle>
+      			<ion-icon name="menu"></ion-icon>
+    		</button>
+		</ion-buttons>
+		<ion-buttons end>
+			<button ion-button icon-only (click)="save()">
+				<ion-icon name="create"></ion-icon>
+      		</button>
+		</ion-buttons>
+	</ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="settings-opt">
+	<ion-list>
+		<button ion-item (click)="changeProfilePhoto()">
+			<ion-avatar item-right>
+				<img *ngIf="account.profilePicture != null;else fixedImage" src="{{ account.profilePicture }}">
+				<ng-template #fixedImage><img src="assets/img/boy.png"></ng-template>
+    		</ion-avatar>
+    		<h2>Foto Perfil</h2>
+		</button>
+	</ion-list>
+	<ion-list>
+		<button ion-item (click)="changeFullName()">
+			Nome Completo
+			<ion-note item-right style="width: 40%">{{ account.name }}</ion-note>
+		</button>
+		<ion-item>
+			E-mail
+			<ion-note item-right style="width: 70%">{{ account.email }}</ion-note>
+		</ion-item>
+		<button ion-item>
+			Alterar Senha
+			<ion-note item-right style="width: 40%">••••••••</ion-note>
+		</button>
+		
+	</ion-list>
+</ion-content>

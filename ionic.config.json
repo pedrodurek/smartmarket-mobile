@@ -1,5 +1,12 @@
 {
   "name": "Smartmarket",
   "app_id": "",
-  "type": "ionic-angular"
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  },
+  "proxies": [{
+        "path": "/SmartmarketWeb/endpoint",
+        "proxyUrl": "http://127.0.0.1:8080/SmartmarketWeb/endpoint"
+  }]
 }

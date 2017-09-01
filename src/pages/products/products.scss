@@ -1,0 +1,18 @@
+page-products {
+
+	ion-list > ion-item-sliding > button,
+	ion-list ion-item,
+	ion-content {
+		background-color: #FAFAFA !important;
+	}
+
+	.blank-items ion-reorder {
+		display: none;
+	}
+
+	.reorder-enabled .item-inner {
+		background-image: none !important;
+		padding-right: 0 !important;
+	}
+
+}

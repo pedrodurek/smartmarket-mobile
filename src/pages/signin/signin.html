@@ -1,0 +1,20 @@
+<ion-content class="login-page">
+	<div class="login-center">
+		<img class="logo" src="assets/img/logo.png"/>
+		<form (ngSubmit)="signIn()">
+			<ion-list inset>
+				<ion-item>
+					<ion-icon ios="md-mail" md="md-mail" item-left></ion-icon>
+					<ion-input [(ngModel)]="signin.email" type="email" name="email" placeholder="E-mail"></ion-input>
+				</ion-item>
+				<ion-item>
+					<ion-icon ios="md-lock" md="md-lock" item-left></ion-icon>
+					<ion-input [(ngModel)]="signin.password" type="password" name="password" placeholder="Senha"></ion-input>
+				</ion-item>
+			</ion-list>
+			<button ion-button round class="btn-outline" type="submit" color="yellow" outline>Entrar</button>
+		</form>
+		<button ion-button color="light" clear>Esqueci minha senha</button>
+		<button ion-button color="light" clear (click)="signUp()">Ainda não é cadastrado? Cadastre-se já!</button>
+	</div>
+</ion-content>
