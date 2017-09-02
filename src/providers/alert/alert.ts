@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 import { AlertController } from 'ionic-angular';
 import { Toast } from '@ionic-native/toast';
+import { SpinnerDialog } from '@ionic-native/spinner-dialog';
+
 
 @Injectable()
 export class AlertProvider {
 
 	constructor(
 		private alertCtrl: AlertController,
-		private toast: Toast
+		private toast: Toast,
+		private spinner: SpinnerDialog
 	) {
 	}
 
@@ -52,6 +55,14 @@ export class AlertProvider {
 			console.log(toast);
 		});
 
+	}
+
+	public showSpinner() {
+		this.spinner.show();
+	}
+
+	public hideSpinner() {
+		this.spinner.hide();
 	}
 
 }

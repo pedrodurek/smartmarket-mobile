@@ -21,7 +21,7 @@ export class SigninPage {
 		private spinnerDialog: SpinnerDialog,
 		private events: Events ,
 		private storage: Storage
-		) {
+	) {
 		this.signin = {};
 	}
 

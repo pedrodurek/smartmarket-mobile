@@ -28,7 +28,8 @@ import { Keyboard } from '@ionic-native/keyboard';
         JsonpModule,
         IonicModule.forRoot(MyApp, {
             scrollAssist: false,
-            autoFocusAssist: false
+            autoFocusAssist: false,
+            backButtonText: 'Voltar'
         }),
         IonicStorageModule.forRoot()
     ],

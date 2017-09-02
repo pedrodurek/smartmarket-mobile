@@ -1,1 +1,35 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu [content]="menucontent">
+	<ion-header>
+		<ion-toolbar color="blue">
+			<div class="face-photo">
+				<img *ngIf="profile.profilePicture != null;else fixedImage" src="{{ profile.profilePicture }}">
+				<ng-template #fixedImage><img src="assets/img/boy.png"></ng-template>
+
+			</div> 
+			<p class="face-title">Olá, <br>{{ profile.name | slice:' ':0 }}</p>
+		</ion-toolbar>
+	</ion-header>
+
+	<ion-content>
+		<ion-list no-lines class="menu-options">
+			<button menuClose ion-item (click)="productsPage()">
+				<ion-icon name="md-basket" item-left></ion-icon>
+				Produtos
+			</button>
+			<button menuClose ion-item (click)="accountPage()">
+				<ion-icon name="md-person" item-left></ion-icon>
+				Dados Cadastrais
+			</button>
+			<button menuClose ion-item>
+				<ion-icon name="md-settings" item-left></ion-icon>
+				Configurações
+			</button>
+			<button menuClose ion-item (click)="logout()">
+				<ion-icon name="md-exit" item-left></ion-icon>
+				Sair
+			</button>
+		</ion-list>
+	</ion-content>
+</ion-menu>
+
+<ion-nav #menucontent [root]="rootPage"></ion-nav>

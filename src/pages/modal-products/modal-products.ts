@@ -52,19 +52,19 @@ export class ModalProductsPage {
 			'Tem certeza que deseja salvar as informações do produto?',
 			() => {
 
-				// this.spinnerDialog.show();
+				this.spinnerDialog.show();
 				let url = this.editProduct?'product/edit':'product/add';
 				this.auth.sendRequest(url, this.product).subscribe((data) => {
 
 					this.product.id = data.id;
 					this.product.dateLastUpdate = data.dateLastUpdate;
-					// this.spinnerDialog.hide();
+					console.log(this.product);
 		        	this.viewCtrl.dismiss(this.product);
 
 				}, (error) => {
 
 					this.showAlert(error);
-					// this.spinnerDialog.hide();
+					this.spinnerDialog.hide();
 
 				});
 

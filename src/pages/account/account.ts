@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ActionSheetController, Events } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
-import { SpinnerDialog } from '@ionic-native/spinner-dialog';
 import { AuthProvider } from '../../providers/auth/auth';
 import { AlertProvider } from '../../providers/alert/alert';
 
@@ -17,7 +16,6 @@ export class AccountPage {
 		public navCtrl: NavController, 
 		public navParams: NavParams,
 		private camera: Camera,
-		private spinnerDialog: SpinnerDialog,
 		private actionSheetCtrl: ActionSheetController,
 		private alert: AlertProvider,
 		private events: Events,
@@ -84,16 +82,20 @@ export class AccountPage {
 		this.navCtrl.push('AccountFullNamePage', {'account': this.account});
 	}
 
+	public changePassword(): void {
+		this.navCtrl.push('ChangePasswordPage', {'account': this.account});
+	}
+
 	public takePicture(opt): void {
 
-		this.spinnerDialog.show();
+		this.alert.showSpinner();
 		this.camera.getPicture(opt).then((imageData) => {
 
-			this.spinnerDialog.hide();
+			this.alert.hideSpinner();
 		 	this.account.profilePicture = 'data:image/jpeg;base64,' + imageData;
 
 		}).catch((err) => {
-			this.spinnerDialog.hide();
+			this.alert.hideSpinner();
 		});
 
 	}
@@ -110,12 +112,12 @@ export class AccountPage {
 	        		this.events.publish('account:profile', this.account);
 	        		this.navCtrl.setRoot('ProductsPage');
 	        		this.alert.showToast('Dados cadastrais alterados com sucesso!');
-	        		this.spinnerDialog.hide();
+	        		this.alert.hideSpinner();
 
 	        	}, (error) => {
 
 	        		this.alert.showSimpleAlert('Salvar Perfil', error);
-	        		this.spinnerDialog.hide();
+	        		this.alert.hideSpinner();
 
 	        	});
 

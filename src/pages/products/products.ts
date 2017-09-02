@@ -41,13 +41,14 @@ export class ProductsPage {
 				this.items.push(data.product);
 			});
 			this.spinnerDialog.hide();
-		});
+
+		}).catch(() => {});
 		this.createBlankFields();
 	}
 
 	public addProduct(): void {
 
-		let modal = this.modalCtrl.create('ModalProducts');
+		let modal = this.modalCtrl.create('ModalProductsPage');
 		modal.onDidDismiss(data => {
 			this.insertProduct(data);
    		});
@@ -58,11 +59,11 @@ export class ProductsPage {
 	private insertProduct(data): void {
 
 		if (data) {
-			// this.spinnerDialog.show();
+
 			this.db.insertProduct(data).then((result: any) => {
 
 				this.alert.showToast('Produto adicionado com sucesso!');
-				// this.spinnerDialog.hide();
+				this.spinnerDialog.hide();
 		     	this.items.push({'id': result.insertId, 'data': data});
 		     	this.createBlankFields();
 
@@ -74,7 +75,7 @@ export class ProductsPage {
 	public editProduct(product, index): void {
 
 
-		let modal = this.modalCtrl.create('ModalProducts', {'product': product});
+		let modal = this.modalCtrl.create('ModalProductsPage', {'product': product});
 		modal.onDidDismiss((data) => {
 			this.updateProduct(data, index);
    		});
@@ -85,13 +86,11 @@ export class ProductsPage {
 	private updateProduct(data, index): void {
 
 		if (data) {
-
-			// this.spinnerDialog.show();
 			this.db.updateProduct(this.items[index].id, data).then(() => {
 
 				this.alert.showToast('Produto alterado com sucesso!');
 				this.items[index].data = data;
-				// this.spinnerDialog.hide();
+				this.spinnerDialog.hide();
 
 			}).catch(() => {
 
@@ -192,7 +191,6 @@ export class ProductsPage {
 				found = false;
 
 			});
-			console.log(data);
 			refresher.complete();
 
 		}).catch((error) => {

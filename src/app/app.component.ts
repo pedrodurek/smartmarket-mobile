@@ -35,7 +35,7 @@ export class MyApp {
 			splashScreen.hide();
 			keyboard.hideKeyboardAccessoryBar(false);
 			db.initDatabase().then(() => {
-
+				console.log('DB Initialized')
 			});
 
 		});
@@ -75,7 +75,7 @@ export class MyApp {
 		            handler: () => {
 
 		            	// this.auth.logout();
-		                this.app.getRootNav().setRoot('Signin');
+		                this.app.getRootNavs()[0].setRoot('SigninPage');
 
 		            }
 		        }
@@ -86,11 +86,11 @@ export class MyApp {
 	}
 
 	public productsPage(): void {
-		this.app.getRootNav().setRoot('Products');
+		this.app.getRootNavs()[0].setRoot('ProductsPage');
 	}
 
 	public accountPage(): void {
-		this.app.getRootNav().setRoot('Account', {'profile': this.profile});
+		this.app.getRootNavs()[0].setRoot('AccountPage', {'profile': this.profile});
 	}
 }
 

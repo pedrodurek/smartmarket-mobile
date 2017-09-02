@@ -33,7 +33,7 @@
 					<ng-template #fixedImage><img src="assets/img/shopping-bag5.png"></ng-template>
 	    		</ion-avatar>
 				<h2>{{ item.data.name }}</h2>
-				<p>R$ {{ item.data.price | adjustprice }}</p>
+				<p>R$ {{ item.data.price | adjustPrice }}</p>
 			</button>
 			<ion-item-options side="right">
 				<button ion-button color="danger" (click)="removeProduct(i)">Remover</button>

@@ -167,8 +167,6 @@ export class DatabaseProvider {
 
 				for (var i = 0; i < result.rows.length; i++) {
 
-					console.log('teste1');
-
 					products.push({
 						'product': {
 							'id': result.rows.item(i).id,
