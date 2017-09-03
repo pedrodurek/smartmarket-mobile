@@ -43,7 +43,7 @@ export class SignupPage {
 
 		}
 		this.spinnerDialog.show();
-		this.auth.sendRequest('register', this.signup).subscribe((data) => {
+		this.auth.sendRequest('user/register', this.signup).subscribe((data) => {
 
 			this.showAlert(data.message);
 			this.spinnerDialog.hide();

@@ -45,9 +45,18 @@ export class ChangePasswordPage {
 			() => {
 
 				this.alert.showSpinner();
-				this.showAlert('Senha alterada com sucesso!');
-				this.alert.hideSpinner();
-				this.navCtrl.pop();
+				this.auth.sendRequest('user/changepassword', this.account).subscribe((data) => {
+
+					this.showAlert(data);
+					this.alert.hideSpinner();
+					this.navCtrl.pop();
+
+	        	}, (error) => {
+
+	        		this.showAlert(error);
+	        		this.alert.hideSpinner();
+
+	        	});
 
 			}
 		)

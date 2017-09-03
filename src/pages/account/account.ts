@@ -107,7 +107,7 @@ export class AccountPage {
 			'Tem certeza que deseja salvar as alterações?',
 			() => {
 
-				this.auth.sendRequest('editprofile', this.account).subscribe((data) => {
+				this.auth.sendRequest('user/edit', this.account).subscribe((data) => {
 
 	        		this.events.publish('account:profile', this.account);
 	        		this.navCtrl.setRoot('ProductsPage');
