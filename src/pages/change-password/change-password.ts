@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, ViewController, NavParams } from 'ionic-angular';
 import { AlertProvider } from '../../providers/alert/alert';
+import { AuthProvider } from '../../providers/auth/auth'; 
 
 @IonicPage()
 @Component({
@@ -17,7 +18,8 @@ export class ChangePasswordPage {
 		private navCtrl: NavController, 
 		private navParams: NavParams,
 		private viewCtrl: ViewController,
-		private alert: AlertProvider
+		private alert: AlertProvider,
+		private auth: AuthProvider
 	) {
 		this.account = navParams.get('account');
 	}
@@ -28,7 +30,7 @@ export class ChangePasswordPage {
 
 	public changePassword() {
 
-		if (this.password.length < 8) {
+		if (this.password == null || this.password.length < 8) {
 
 			this.showAlert('A senha deve conter no mínimo 8 caracteres.');
 			return;
@@ -45,9 +47,13 @@ export class ChangePasswordPage {
 			() => {
 
 				this.alert.showSpinner();
-				this.auth.sendRequest('user/changepassword', this.account).subscribe((data) => {
+				var json = {
+					'email': this.account.email,
+					'password': this.password
+				};
+				this.auth.sendRequest('user/changepassword', json).subscribe((data) => {
 
-					this.showAlert(data);
+					this.showAlert(data.message);
 					this.alert.hideSpinner();
 					this.navCtrl.pop();
 
