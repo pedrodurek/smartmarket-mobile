@@ -60,8 +60,11 @@ export class AccountPage {
 			 	handler: () => {
 
 			   		let options: CameraOptions = {
+			   			quality: 75,
 			   		  	destinationType: this.camera.DestinationType.DATA_URL,
-			   		  	sourceType: this.camera.PictureSourceType.PHOTOLIBRARY
+			   		  	sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+			   		  	targetWidth: 300,
+			   		  	targetHeight: 300,
 			   		};
 			   		this.takePicture(options);
 

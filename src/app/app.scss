@@ -176,3 +176,20 @@ ion-navbar[color="blue"] > .toolbar-background {
 	}
 
 }
+
+.ios div.toolbar-title.toolbar-title-ios,
+.ios ion-navbar.toolbar.toolbar-ios.statusbar-padding {
+	padding-top: 20px;
+	min-height: calc(44px + 20px);
+}
+.ios page-product-photos ion-title.title.title-ios {
+	padding-top: 20px;
+}
+
+.toolbar-background.toolbar-background-ios {
+	border-color: #24c7f0 !important
+}
+
+.ios div.toolbar-title.toolbar-title-ios {
+	padding-top: 20px;
+}

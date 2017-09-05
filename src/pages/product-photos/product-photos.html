@@ -1,0 +1,23 @@
+<ion-header>
+
+  	<ion-navbar color="blue">
+    	<ion-title>Treinamento Fotos</ion-title>
+    	<ion-buttons end>
+			<button ion-button icon-only (click)="more()">
+				<ion-icon name="more"></ion-icon>
+      		</button>
+		</ion-buttons>
+  	</ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+	<ion-grid>
+		<ion-row *ngFor="let photo of photos">
+			<ion-col *ngFor="let item of photo">
+				<div class="image-background" [style.backgroundImage]="'url('+ item +')'"></div>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+</ion-content>

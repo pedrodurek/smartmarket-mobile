@@ -7,6 +7,8 @@ export class SlicePipe implements PipeTransform {
 
 	transform(value: string, ...args) {
 
+		console.log('Teste');
+		console.log(value);
 		if (value != null && args.length > 1) {
 
 			let wordList = value.split(args[0]);

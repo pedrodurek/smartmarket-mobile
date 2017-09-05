@@ -149,6 +149,10 @@ export class ModalProductsPage {
 
 	}
 
+	public trainPhotos(): void {
+		this.navCtrl.push('ProductPhotosPage', {'product': this.product});
+	}
+
 	private showAlert(message: string) {
 		this.alert.showSimpleAlert('Cadastro produto', message);
 	}

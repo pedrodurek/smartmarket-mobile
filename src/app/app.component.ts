@@ -35,23 +35,24 @@ export class MyApp {
 			splashScreen.hide();
 			keyboard.hideKeyboardAccessoryBar(false);
 			db.initDatabase().then(() => {
-				console.log('DB Initialized')
+
+				console.log('DB Initialized');
+				auth.isLogged().then((profile) => {
+
+					if (profile != null) {
+
+						this.profile = profile;
+						this.rootPage = 'ProductsPage';
+
+					} else {
+						this.rootPage = 'SigninPage';
+					}
+
+				});
 			});
 
 		});
 
-		auth.isLogged().then((profile) => {
-
-			if (profile != null) {
-
-				this.profile = profile;
-				this.rootPage = 'ProductsPage';
-
-			} else {
-				this.rootPage = 'SigninPage';
-			}
-
-		});
 		events.subscribe('account:profile', (profile) => {
 			this.profile = profile;
 		});

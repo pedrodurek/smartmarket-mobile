@@ -46,6 +46,7 @@ export class SignupPage {
 		this.auth.sendRequest('user/register', this.signup).subscribe((data) => {
 
 			this.showAlert(data.message);
+			this.navCtrl.pop();
 			this.spinnerDialog.hide();
 
 		}, (error) => {

@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { HttpModule, JsonpModule } from '@angular/http';
 import { IonicStorageModule } from '@ionic/storage';
+import { PipesModule } from '../pipes/pipes.module';
 
 import { MyApp } from './app.component';
 import { AlertProvider } from '../providers/alert/alert';
@@ -17,6 +18,7 @@ import { SpinnerDialog } from '@ionic-native/spinner-dialog';
 import { SQLite } from '@ionic-native/sqlite';
 import { Toast } from '@ionic-native/toast';
 import { Keyboard } from '@ionic-native/keyboard';
+import { ImagePicker } from '@ionic-native/image-picker';
 
 @NgModule({
     declarations: [
@@ -26,6 +28,7 @@ import { Keyboard } from '@ionic-native/keyboard';
         BrowserModule,
         HttpModule,
         JsonpModule,
+        PipesModule,
         IonicModule.forRoot(MyApp, {
             scrollAssist: false,
             autoFocusAssist: false,
@@ -49,7 +52,7 @@ import { Keyboard } from '@ionic-native/keyboard';
         SQLite,
         Toast,
         SpinnerDialog,
-
+        ImagePicker,
         Keyboard
     ]
 })

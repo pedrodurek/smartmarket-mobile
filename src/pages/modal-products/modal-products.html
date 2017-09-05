@@ -41,9 +41,9 @@
 			<ion-label stacked color="gray"><b>Peso</b></ion-label>
 			<ion-input type="text" [(ngModel)]="product.weight" (ionFocus)="disabledButtons = true" (ionBlur)="enableButtons()"></ion-input>
 		</ion-item>
-		<button ion-item>
+		<button ion-item (click)="trainPhotos()">
 			<h2>Fotos</h2>
-			<p>Biblioteca</p>
+			<p>Treinamento</p>
 		</button>
 		<ion-item></ion-item>
 		<ion-item></ion-item>

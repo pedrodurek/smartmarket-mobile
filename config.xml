@@ -81,6 +81,9 @@
     <allow-navigation href="http://192.168.1.5:8100" />
     <allow-navigation href="http://127.0.0.1:8100" />
     <engine name="ios" spec="^4.4.0" />
+    <plugin name="com.synconset.imagepicker" spec="~2.1.8">
+        <variable name="PHOTO_LIBRARY_USAGE_DESCRIPTION" value="Fotos para treinamento" />
+    </plugin>
     <plugin name="cordova-plugin-camera" spec="^2.4.1" />
     <plugin name="cordova-plugin-console" spec="^1.0.5" />
     <plugin name="cordova-plugin-device" spec="^1.1.4" />
