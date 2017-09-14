@@ -14,10 +14,15 @@
 
 <ion-content>
 	<ion-grid>
-		<ion-row *ngFor="let photo of photos">
+		<ion-row *ngFor="let photo of photos; let i = index">
 			<ion-col *ngFor="let item of photo">
-				<div class="image-background" [style.backgroundImage]="'url('+ item +')'"></div>
+				<div class="image-background" [style.backgroundImage]="'url('+ (item | drawImage) +')'"></div>
 			</ion-col>
+			<ng-template [ngIf]="i == (photos.length-1)">
+				<ion-col *ngFor="let item of blankFields">
+					<div class="image-background">{{ item }}</div>
+				</ion-col>
+			</ng-template>
 		</ion-row>
 	</ion-grid>
 </ion-content>

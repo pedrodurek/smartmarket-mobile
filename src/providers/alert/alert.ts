@@ -65,4 +65,7 @@ export class AlertProvider {
 		this.spinner.hide();
 	}
 
+	public showLoading(message: string) {
+	}
+
 }

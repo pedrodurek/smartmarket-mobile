@@ -66,7 +66,7 @@ export class AuthProvider {
 		console.log(json);
 		let headers = new Headers({ 
 			'Content-Type': 'application/json', 
-    		});
+    	});
   		let options = new RequestOptions({ headers: headers });
 		return this.http.post(URL+sufix, json, options)
 			.timeout(TIMEOUT_REQUEST*1000)
