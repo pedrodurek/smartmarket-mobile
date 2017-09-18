@@ -24,7 +24,6 @@ export class MyApp {
 		private events: Events,
 		private db: DatabaseProvider,
 		private auth: AuthProvider
-
 	) {
 
 		this.profile = {};
@@ -59,6 +58,9 @@ export class MyApp {
 
 	}
 
+	public settings(): void {
+		this.app.getRootNavs()[0].setRoot('SettingsPage');
+	}
 
 	public logout(): void {
 

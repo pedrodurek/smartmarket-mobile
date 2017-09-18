@@ -19,6 +19,8 @@ import { SQLite } from '@ionic-native/sqlite';
 import { Toast } from '@ionic-native/toast';
 import { Keyboard } from '@ionic-native/keyboard';
 import { ImagePicker } from '@ionic-native/image-picker';
+import { Push } from '@ionic-native/push';
+
 
 @NgModule({
     declarations: [
@@ -53,7 +55,8 @@ import { ImagePicker } from '@ionic-native/image-picker';
         Toast,
         SpinnerDialog,
         ImagePicker,
-        Keyboard
+        Keyboard,
+        Push
     ]
 })
 export class AppModule {}

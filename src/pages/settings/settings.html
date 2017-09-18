@@ -1,0 +1,21 @@
+<ion-header>
+	<ion-navbar color="yellow">
+		<ion-title>Configurações</ion-title>
+		<ion-buttons start>
+			<button ion-button icon-only menuToggle>
+      			<ion-icon name="menu"></ion-icon>
+    		</button>
+		</ion-buttons>
+	</ion-navbar>
+</ion-header>
+
+<ion-content class="settings-opt">
+	<ion-list>
+		<ion-item>
+      		<ion-toggle color="secondary" [(ngModel)]="isRepositor" (ionChange)="enableRepositor()"></ion-toggle>
+      		<ion-label>
+        		Modo Repositor
+      		</ion-label>
+    	</ion-item>
+	</ion-list>
+</ion-content>

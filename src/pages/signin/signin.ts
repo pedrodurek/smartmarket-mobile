@@ -4,6 +4,7 @@ import { AuthProvider } from '../../providers/auth/auth';
 import { AlertProvider } from '../../providers/alert/alert';
 import { SpinnerDialog } from '@ionic-native/spinner-dialog';
 import { Storage } from '@ionic/storage';
+import { Push, PushObject, PushOptions } from '@ionic-native/push';
 
 @IonicPage()
 @Component({
@@ -13,19 +14,22 @@ import { Storage } from '@ionic/storage';
 export class SigninPage {
 
 	private signin: any;
+
 	constructor(
 		private navCtrl: NavController, 
 		private navParams: NavParams,
 		private auth: AuthProvider,
 		private alert: AlertProvider,
 		private spinnerDialog: SpinnerDialog,
-		private events: Events ,
-		private storage: Storage
+		private events: Events,
+		private storage: Storage,
+		private push: Push
 	) {
 		this.signin = {};
 	}
 
 	ionViewDidLoad() {
+		this.initPushNotification();
 	}
 
 	public signUp(): void {
@@ -49,4 +53,24 @@ export class SigninPage {
 
 		});
 	}
+
+	public initPushNotification(): void {
+
+		const options: PushOptions = {
+		   android: {
+		       senderID: '12345679'
+		   },
+		   ios: {
+		       alert: 'true',
+		       badge: true,
+		       sound: 'true'
+		   }
+		};
+		const pushObject: PushObject = this.push.init(options);
+		pushObject.on('registration').subscribe((registration: any) => {
+			this.signin.idDevice = registration.registrationId;
+		});
+
+	}
+
 }

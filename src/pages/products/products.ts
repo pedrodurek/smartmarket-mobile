@@ -3,7 +3,6 @@ import { IonicPage, NavController, NavParams, ModalController, ActionSheetContro
 import { DatabaseProvider } from '../../providers/database/database';
 import { AlertProvider } from '../../providers/alert/alert';
 import { AuthProvider } from '../../providers/auth/auth';
-import { SpinnerDialog } from '@ionic-native/spinner-dialog';
 
 @IonicPage()
 @Component({
@@ -23,8 +22,8 @@ export class ProductsPage {
 		private actionSheetCtrl: ActionSheetController,
 		private alert: AlertProvider,
 		private auth: AuthProvider,
-		private db: DatabaseProvider,
-		private spinnerDialog: SpinnerDialog) {
+		private db: DatabaseProvider
+	) {
 
 		this.emptyArray = [];
 		this.items = [];
@@ -34,13 +33,13 @@ export class ProductsPage {
 
 	ionViewDidLoad() {
 
-		this.spinnerDialog.show();
+		this.alert.showSpinner();
 		this.db.selectAllProducts().then((products: Array<Object>) => {
 
 			products.forEach((data: any) => {
 				this.items.push(data.product);
 			});
-			this.spinnerDialog.hide();
+			this.alert.hideSpinner();
 
 		}).catch(() => {});
 		this.createBlankFields();
@@ -63,7 +62,7 @@ export class ProductsPage {
 			this.db.insertProduct(data).then((result: any) => {
 
 				this.alert.showToast('Produto adicionado com sucesso!');
-				this.spinnerDialog.hide();
+				this.alert.hideSpinner();
 		     	this.items.push({'id': result.insertId, 'data': data});
 		     	this.createBlankFields();
 
@@ -90,7 +89,7 @@ export class ProductsPage {
 
 				this.alert.showToast('Produto alterado com sucesso!');
 				this.items[index].data = data;
-				this.spinnerDialog.hide();
+				this.alert.hideSpinner();
 
 			}).catch(() => {
 
@@ -106,14 +105,14 @@ export class ProductsPage {
 			'Tem certeza que deseja remover este produto?',
 			() => {
 
-				this.spinnerDialog.show();
+				this.alert.showSpinner();
 				this.auth.sendRequest('product/delete', {'id': this.items[index].data.id}).subscribe((data) => {
 
 		        	this.db.deleteProduct(this.items[index].id).then(() => {
 
 		        		this.alert.showToast('Produto removido com sucesso!');
 			        	this.items.splice(index, 1);
-			        	this.spinnerDialog.hide();
+			        	this.alert.hideSpinner();
 
 		        	}).catch(() => {
 
@@ -122,7 +121,7 @@ export class ProductsPage {
 				}, (error) => {
 
 					this.showAlert(error);
-					this.spinnerDialog.hide();
+					this.alert.hideSpinner();
 
 				});
 
