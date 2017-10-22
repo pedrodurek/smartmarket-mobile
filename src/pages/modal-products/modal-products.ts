@@ -116,8 +116,14 @@ export class ModalProductsPage {
 			 	handler: () => {
 
 			   		let options: CameraOptions = {
+			   			quality: 75,
 			   		  	destinationType: this.camera.DestinationType.DATA_URL,
-			   		  	sourceType: this.camera.PictureSourceType.PHOTOLIBRARY
+			   		  	sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+			   		  	allowEdit: false,
+			   		  	targetWidth: 300,
+			   		  	targetHeight: 300,
+			   		  	saveToPhotoAlbum: false,
+			   		  	correctOrientation: false
 			   		};
 			   		this.takePicture(options);
 

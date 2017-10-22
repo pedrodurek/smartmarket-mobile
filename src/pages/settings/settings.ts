@@ -57,4 +57,21 @@ export class SettingsPage {
 		this.alert.showSimpleAlert('Configurações', message);
 	}
 
+	public trainSystem() {
+
+		this.alert.showSpinner();
+		this.auth.sendRequest('train/request', {}).subscribe((data) => {
+
+			this.showAlert(data.message);
+			this.alert.hideSpinner();
+
+		}, (error) => {
+
+			this.alert.showSimpleAlert('Falha no envio', error);
+			this.alert.hideSpinner();
+			
+		});
+
+	}
+
 }

@@ -171,7 +171,7 @@ export class ProductsPage {
 
 		this.auth.syncProducts(products).then((data: any) => {
 
-			data.forEach((value) => {
+			data.productsUpdate.forEach((value) => {
 
 				for (var i = 0; i < this.items.length; i++) {
 
@@ -190,6 +190,27 @@ export class ProductsPage {
 				found = false;
 
 			});
+			data.productsRemove.forEach((value) => {
+
+				for (var i = 0; i < this.items.length; i++) {
+
+					if (value.id == this.items[i].data.id) {
+
+						this.db.deleteProduct(this.items[i].id).then(() => {
+			        		this.items.splice(i, 1);
+			        	}).catch(() => {
+			        		
+			        	});
+						break;
+
+					}
+
+				}
+
+			});
+			setTimeout(() => {
+				this.alert.showToast('Produtos sincronizados com sucesso!');
+			}, 300);
 			refresher.complete();
 
 		}).catch((error) => {

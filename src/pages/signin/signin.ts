@@ -68,7 +68,7 @@ export class SigninPage {
 		};
 		const pushObject: PushObject = this.push.init(options);
 		pushObject.on('registration').subscribe((registration: any) => {
-			this.signin.idDevice = registration.registrationId;
+			this.signin.deviceToken = registration.registrationId;
 		});
 
 	}

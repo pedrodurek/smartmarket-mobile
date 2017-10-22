@@ -26,7 +26,12 @@ export class AuthProvider {
 			this.sendRequest('product/sync', json).subscribe((data) => {
 					
 				this.syncProductsWithImage(data.productsWithImage).then((value) => {
-					resolve(data.productsWithoutImage.concat(value));
+
+					resolve({
+						productsUpdate: data.productsWithoutImage.concat(value),
+						productsRemove: data.productsToBeRemoved  
+					});
+
 				}).catch((error1) => {
 					reject(error1);
 				});

@@ -86,17 +86,8 @@ export class ProductPhotosPage {
 				loading.present();
 				this.sendTrainingPhotos(0, 0, 0, loading).then(() => {
 
-					this.auth.sendRequest('train/request', {}).subscribe(() => {
-
-						loading.dismiss();
-						this.navCtrl.pop();
-
-					}, (error) => {
-
-						loading.dismiss();
-						this.alert.showSimpleAlert('Falha no envio', error);
-						
-					});
+					loading.dismiss();
+					this.navCtrl.pop();
 
 				}).catch((error) => {
 

@@ -6,6 +6,10 @@ page-products {
 		background-color: #FAFAFA !important;
 	}
 
+	ion-list > ion-item-sliding:first-child {
+		margin-top: 5px !important;
+	}
+
 	.blank-items ion-reorder {
 		display: none;
 	}
